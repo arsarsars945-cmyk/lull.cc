@@ -1,3 +1,10 @@
+const SUPABASE_URL = 'db.lkkwbfpvgvvoeicpsdnv.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_HVW3bCU3aEKpf99IjNnU2g_FYxVFdZO';
+
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY
+);
 const modal = document.getElementById('modal');
 const openButtons = document.querySelectorAll('[data-open-modal]');
 const closeButton = document.querySelector('.modal-close');
