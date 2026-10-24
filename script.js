@@ -71,8 +71,8 @@ form.addEventListener('submit', async event => {
         email,
         password,
         options: {
-          emailRedirectTo: window.location.origin
-        }
+  emailRedirectTo: 'https://lullcc.vercel.app'
+}
       });
 
       if (error) throw error;
