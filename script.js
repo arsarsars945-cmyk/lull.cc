@@ -23,7 +23,25 @@ function closeModal() {
   modal.setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
 }
-openButtons.forEach(button => button.addEventListener('click', openModal));
+openButtons.forEach(button => {
+  button.addEventListener('click', async event => {
+    event.preventDefault();
+
+    const { data: { session }, error } =
+      await supabaseClient.auth.getSession();
+
+    if (error) {
+      note.textContent = 'Не удалось проверить авторизацию.';
+      return;
+    }
+
+    if (session) {
+      window.location.href = 'profile.html';
+    } else {
+      openModal();
+    }
+  });
+});
 closeButton.addEventListener('click', closeModal);
 modal.addEventListener('click', event => { if (event.target === modal) closeModal(); });
 document.addEventListener('keydown', event => { if (event.key === 'Escape') closeModal(); });
