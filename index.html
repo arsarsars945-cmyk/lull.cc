@@ -82,6 +82,32 @@
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
       <button class="modal-close" aria-label="Закрыть">×</button>
       <div class="brand modal-brand"><span class="brand-mark">l</span><span>lull<span class="accent">.cc</span></span></div>
+      <div class="eyebrow">YOUR ACCOUNT</div>
+<h2 id="modal-title">Welcome back<span class="accent">.</span></h2>
+<p class="modal-copy">Войди или создай аккаунт.</p>
+
+<div class="auth-switch">
+  <button type="button" id="login-mode" class="btn btn-primary">Вход</button>
+  <button type="button" id="signup-mode" class="btn btn-ghost">Регистрация</button>
+</div>
+
+<form id="demo-form">
+  <label for="demo-email">Email</label>
+  <input id="demo-email" type="email" placeholder="you@example.com"
+         autocomplete="email" required>
+
+  <label for="demo-password">Пароль</label>
+  <input id="demo-password" type="password" placeholder="Минимум 6 символов"
+         autocomplete="current-password" minlength="6" required>
+
+  <button class="btn btn-primary full" id="auth-submit" type="submit">
+    Войти ↗
+  </button>
+</form>
+
+<p class="demo-note" id="demo-note" role="status" aria-live="polite">
+  Войди или зарегистрируйся.
+</p>
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
