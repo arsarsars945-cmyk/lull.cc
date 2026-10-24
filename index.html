@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#09090d">
+  <title>lull.cc — CS2 UI Concept</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <header class="nav">
+    <a class="brand" href="#"><span class="brand-mark">l</span><span>lull<span class="accent">.cc</span></span></a>
+    <nav class="nav-links">
+      <a href="#features">Возможности</a><a href="#showcase">Обзор</a><a href="#faq">FAQ</a>
+    </nav>
+    <button class="btn btn-small btn-ghost" data-open-modal>Войти <span aria-hidden="true">↗</span></button>
+    <button class="menu-toggle" aria-label="Открыть меню">☰</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="pill"><span class="live-dot"></span> COMMUNITY UI CONCEPT <span class="pill-sep">/</span> CS2</div>
+      <h1>Built for the<br><span class="gradient-text">next round.</span></h1>
+      <p class="hero-copy">Минималистичный игровой интерфейс с характером. Тёмная эстетика, мягкие свечения и внимание к каждой детали.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#features">Изучить интерфейс <span>↘</span></a>
+        <button class="btn btn-ghost" data-open-modal>Открыть аккаунт <span>↗</span></button>
+      </div>
+      <div class="hero-meta"><span><i class="tiny-check">✓</i> Тёмная тема</span><span><i class="tiny-check">✓</i> Адаптивный дизайн</span><span><i class="tiny-check">✓</i> Демо-интерфейс</span></div>
+
+      <div class="preview-wrap" id="showcase">
+        <div class="preview-top"><div class="window-dots"><i></i><i></i><i></i></div><span>lull.cc <span class="muted">/ overview</span></span><span class="status"><i></i> ONLINE UI</span></div>
+        <div class="preview-content">
+          <aside class="preview-side">
+            <div class="side-logo"><span class="brand-mark mini">l</span> lull<span class="accent">.cc</span></div>
+            <div class="side-label">WORKSPACE</div>
+            <div class="side-item active"><span>◈</span> Overview</div>
+            <div class="side-item"><span>▦</span> Showcase</div>
+            <div class="side-item"><span>⚙</span> Settings</div>
+            <div class="side-bottom"><div class="avatar">U</div><div><b>Guest user</b><small>Demo profile</small></div><span class="more">···</span></div>
+          </aside>
+          <div class="preview-main">
+            <div class="dash-heading"><div><small class="eyebrow">YOUR SPACE</small><h2>Welcome back<span class="accent">.</span></h2><p>Твой интерфейс — твои правила.</p></div><div class="dash-tag">PREVIEW MODE</div></div>
+            <div class="stats-grid">
+              <div class="stat-card"><span class="stat-icon">◈</span><small>DESIGN SYSTEM</small><strong>Minimal<span class="accent">.</span></strong><span class="stat-foot">Чистая визуальная система</span></div>
+              <div class="stat-card"><span class="stat-icon">✳</span><small>INTERFACE</small><strong>Adaptive</strong><span class="stat-foot">Desktop + mobile</span></div>
+              <div class="stat-card"><span class="stat-icon">⌁</span><small>STATUS</small><strong class="green">Concept</strong><span class="stat-foot">Front-end demo</span></div>
+            </div>
+            <div class="activity-card"><div class="activity-title"><div><small class="eyebrow">LATEST UPDATE</small><h3>What's new</h3></div><span class="round-arrow">↗</span></div><div class="update-row"><div class="update-icon">✦</div><div><b>Visual refresh</b><p>Обновлённая типографика, карточки и подсветка.</p></div><time>NOW</time></div><div class="update-row"><div class="update-icon purple">⌘</div><div><b>Account preview</b><p>Макет профиля и окна авторизации.</p></div><time>DEMO</time></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="under-preview"><span>FIG. 01 — DASHBOARD CONCEPT</span><span>DESIGNED FOR DESKTOP & MOBILE</span></div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="section-head"><div><div class="eyebrow">DESIGN PRINCIPLES / 01</div><h2>Less noise.<br><span class="muted">More focus.</span></h2></div><p>Интерфейс, который не перегружает экран: ясная структура, контрастные детали и плавные переходы.</p></div>
+      <div class="feature-grid">
+        <article class="feature-card"><div class="feature-number">01 / VISUALS</div><div class="feature-symbol">◈</div><h3>Тёмная эстетика</h3><p>Глубокий графитовый фон, тонкие границы и фиолетовые акценты.</p><span class="feature-link">VISUAL SYSTEM ↗</span></article>
+        <article class="feature-card"><div class="feature-number">02 / MOTION</div><div class="feature-symbol">✳</div><h3>Мягкая анимация</h3><p>Ненавязчивое движение элементов и интерактивные состояния кнопок.</p><span class="feature-link">MICRO-INTERACTIONS ↗</span></article>
+        <article class="feature-card"><div class="feature-number">03 / PROFILE</div><div class="feature-symbol">⌘</div><h3>Профиль пользователя</h3><p>Демонстрационный макет аккаунта, настроек и пользовательского меню.</p><span class="feature-link">ACCOUNT UI ↗</span></article>
+      </div>
+    </section>
+
+    <section class="cta-panel">
+      <div><div class="eyebrow">YOUR NEXT STEP / 02</div><h2>Make it yours<span class="accent">.</span></h2><p>Это стартовый шаблон. Можно менять тексты, цвета, блоки и логотип в коде.</p></div>
+      <button class="btn btn-primary" data-open-modal>Посмотреть аккаунт <span>↗</span></button>
+    </section>
+
+    <section class="section faq-section" id="faq">
+      <div class="eyebrow">COMMON QUESTIONS / 03</div><h2>FAQ<span class="accent">.</span></h2>
+      <details><summary>Это настоящий сервис?</summary><p>Нет. Это локальный фронтенд-макет для изучения дизайна. Он не подключён к серверам и не выполняет игровые функции.</p></details>
+      <details><summary>Регистрация работает?</summary><p>Окно входа здесь демонстрационное. Не вводи реальные пароли: для настоящей авторизации нужен защищённый сервер или сервис вроде Supabase.</p></details>
+      <details><summary>Как запустить сайт?</summary><p>Распакуй архив и открой index.html в браузере. Для редактирования открой папку в Visual Studio Code.</p></details>
+    </section>
+  </main>
+
+  <footer><a class="brand" href="#"><span class="brand-mark">l</span><span>lull<span class="accent">.cc</span></span></a><span>COMMUNITY UI CONCEPT · NOT AN OFFICIAL SERVICE</span><span>© 2026</span></footer>
+
+  <div class="modal-backdrop" id="modal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close" aria-label="Закрыть">×</button>
+      <div class="brand modal-brand"><span class="brand-mark">l</span><span>lull<span class="accent">.cc</span></span></div>
+      <div class="eyebrow">DEMO ACCOUNT</div><h2 id="modal-title">Welcome back<span class="accent">.</span></h2>
+      <p class="modal-copy">Это только визуальная демонстрация. Не используй реальные пароли.</p>
+      <form id="demo-form">
+        <label for="demo-email">Email (пример)</label><input id="demo-email" type="email" placeholder="you@example.com" autocomplete="off" required>
+        <label for="demo-password">Пароль (не настоящий)</label><input id="demo-password" type="password" placeholder="Только для макета" autocomplete="off" required>
+        <button class="btn btn-primary full" type="submit">Продолжить <span>↗</span></button>
+      </form>
+      <p class="demo-note" id="demo-note">Данные никуда не отправляются и не сохраняются.</p>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
