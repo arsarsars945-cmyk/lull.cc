@@ -102,3 +102,24 @@ openButtons.forEach(button => {
     authSubmit.disabled = false;
   }
 });
+async function updateAuthUI() {
+  const { data: { session }, error } =
+    await supabaseClient.auth.getSession();
+
+  if (error) {
+    console.error('Ошибка проверки сессии:', error);
+    return;
+  }
+
+  openButtons.forEach(button => {
+    button.textContent = session ? 'Аккаунт' : 'Войти';
+  });
+}
+
+updateAuthUI();
+
+supabaseClient.auth.onAuthStateChange((_event, session) => {
+  openButtons.forEach(button => {
+    button.textContent = session ? 'Аккаунт' : 'Войти';
+  });
+});
