@@ -102,24 +102,152 @@ openButtons.forEach(button => {
     authSubmit.disabled = false;
   }
 });
-async function updateAuthUI() {
-  const { data: { session }, error } =
-    await supabaseClient.auth.getSession();
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Аккаунт — lull.cc</title>
+  <style>
+    * { box-sizing: border-box; }
 
-  if (error) {
-    console.error('Ошибка проверки сессии:', error);
-    return;
-  }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      background: #08090c;
+      color: #f5f5f7;
+      font-family: Arial, sans-serif;
+    }
 
-  openButtons.forEach(button => {
-    button.textContent = session ? 'Аккаунт' : 'Войти';
-  });
-}
+    .profile {
+      width: 100%;
+      max-width: 440px;
+      padding: 32px;
+      border: 1px solid #292b33;
+      border-radius: 18px;
+      background: #111218;
+    }
 
-updateAuthUI();
+    .brand {
+      margin-bottom: 28px;
+      font-size: 25px;
+      font-weight: 800;
+    }
 
-supabaseClient.auth.onAuthStateChange((_event, session) => {
-  openButtons.forEach(button => {
-    button.textContent = session ? 'Аккаунт' : 'Войти';
-  });
-});
+    .accent { color: #a78bfa; }
+
+    h1 { margin-bottom: 8px; }
+
+    .muted {
+      color: #a1a1aa;
+      overflow-wrap: anywhere;
+    }
+
+    .status {
+      margin: 24px 0;
+      padding: 13px;
+      border-radius: 10px;
+      background: #19291f;
+      color: #86efac;
+    }
+
+    button {
+      width: 100%;
+      padding: 13px;
+      border: 0;
+      border-radius: 9px;
+      background: #a78bfa;
+      color: #111018;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    a {
+      display: block;
+      margin-top: 18px;
+      color: #c4b5fd;
+      text-align: center;
+    }
+
+    #message {
+      color: #fca5a5;
+      overflow-wrap: anywhere;
+    }
+  </style>
+</head>
+<body>
+  <main class="profile">
+    <div class="brand">lull<span class="accent">.cc</span></div>
+
+    <h1>Мой аккаунт</h1>
+    <p class="muted">Email пользователя:</p>
+    <p id="user-email">Проверяем авторизацию...</p>
+
+    <div class="status" id="auth-status">
+      Проверяем статус...
+    </div>
+
+    <button id="logout-button" type="button">
+      Выйти из аккаунта
+    </button>
+
+    <p id="message" role="status" aria-live="polite"></p>
+    <a href="index.html">Вернуться на главную</a>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    // Используй те же URL и Publishable key, что в script.js.
+    const SUPABASE_URL = 'ВСТАВЬ_СВОЙ_PROJECT_URL';
+    const SUPABASE_PUBLISHABLE_KEY = 'ВСТАВЬ_СВОЙ_PUBLISHABLE_KEY';
+
+    const client = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY
+    );
+
+    const emailElement = document.getElementById('user-email');
+    const statusElement = document.getElementById('auth-status');
+    const messageElement = document.getElementById('message');
+    const logoutButton = document.getElementById('logout-button');
+
+    async function checkSession() {
+      const { data, error } = await client.auth.getSession();
+
+      if (error) {
+        statusElement.textContent = 'Не удалось проверить вход.';
+        messageElement.textContent = error.message;
+        return;
+      }
+
+      if (!data.session) {
+        window.location.replace('index.html');
+        return;
+      }
+
+      emailElement.textContent = data.session.user.email || 'Email не указан';
+      statusElement.textContent = '● Авторизован';
+    }
+
+    logoutButton.addEventListener('click', async () => {
+      logoutButton.disabled = true;
+      messageElement.textContent = '';
+
+      const { error } = await client.auth.signOut();
+
+      if (error) {
+        messageElement.textContent = error.message;
+        logoutButton.disabled = false;
+        return;
+      }
+
+      window.location.replace('index.html');
+    });
+
+    checkSession();
+  </script>
+</body>
+</html>
