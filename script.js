@@ -29,9 +29,71 @@ modal.addEventListener('click', event => { if (event.target === modal) closeModa
 document.addEventListener('keydown', event => { if (event.key === 'Escape') closeModal(); });
 menuToggle.addEventListener('click', () => navLinks.classList.toggle('show'));
 navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => navLinks.classList.remove('show')));
-form.addEventListener('submit', event => {
+let authMode = 'login';
+
+const loginMode = document.getElementById('login-mode');
+const signupMode = document.getElementById('signup-mode');
+const authSubmit = document.getElementById('auth-submit');
+const emailInput = document.getElementById('demo-email');
+const passwordInput = document.getElementById('demo-password');
+
+function setAuthMode(mode) {
+  authMode = mode;
+  const isLogin = mode === 'login';
+
+  loginMode.classList.toggle('btn-primary', isLogin);
+  loginMode.classList.toggle('btn-ghost', !isLogin);
+  signupMode.classList.toggle('btn-primary', !isLogin);
+  signupMode.classList.toggle('btn-ghost', isLogin);
+
+  authSubmit.textContent = isLogin ? 'Войти ↗' : 'Создать аккаунт ↗';
+  passwordInput.autocomplete = isLogin ? 'current-password' : 'new-password';
+  note.textContent = isLogin
+    ? 'Войди в свой аккаунт.'
+    : 'После регистрации может потребоваться подтверждение email.';
+}
+
+loginMode.addEventListener('click', () => setAuthMode('login'));
+signupMode.addEventListener('click', () => setAuthMode('signup'));
+
+form.addEventListener('submit', async event => {
   event.preventDefault();
-  note.textContent = 'Это демо: данные не отправлены и не сохранены. Для настоящего входа подключи безопасную авторизацию.';
-  note.style.color = '#bba7ff';
-  form.reset();
+
+  const email = emailInput.value.trim();
+  const password = passwordInput.value;
+
+  authSubmit.disabled = true;
+  note.textContent = 'Подождите...';
+
+  try {
+    if (authMode === 'signup') {
+      const { data, error } = await supabaseClient.auth.signUp({
+        email,
+        password,
+        options: {
+          emailRedirectTo: window.location.origin
+        }
+      });
+
+      if (error) throw error;
+
+      note.textContent = data.session
+        ? 'Аккаунт создан! Вы вошли.'
+        : 'Регистрация отправлена. Проверь почту и подтверди email.';
+    } else {
+      const { error } = await supabaseClient.auth.signInWithPassword({
+        email,
+        password
+      });
+
+      if (error) throw error;
+
+      note.textContent = 'Вход выполнен успешно!';
+      passwordInput.value = '';
+    }
+  } catch (error) {
+    note.textContent = error.message || 'Не удалось выполнить запрос.';
+  } finally {
+    authSubmit.disabled = false;
+  }
 });
