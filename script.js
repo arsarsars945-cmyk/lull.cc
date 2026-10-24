@@ -89,7 +89,12 @@ form.addEventListener('submit', async event => {
       if (error) throw error;
 
       note.textContent = 'Вход выполнен успешно!';
-      passwordInput.value = '';
+passwordInput.value = '';
+closeModal();
+
+openButtons.forEach(button => {
+  button.textContent = 'Аккаунт';
+});
     }
   } catch (error) {
     note.textContent = error.message || 'Не удалось выполнить запрос.';
